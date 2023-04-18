@@ -2,7 +2,7 @@
 
 本文基于 Bert 的中文分词和问答的预训练模型，利用 10, 000 余条中文问答数据进行微调，构建了能够理解中文段落并回答相关问题的问答机器人。用自定义的数据进行测试，模型的效果基本能达到“正确回答小学三年级以下的阅读理解题”的水平。
 
-![predict-james](README-iamge/predict-james.png)
+![predict-james](README-image/predict-james.png)
 
 这是我第一次完整地实现一个 NLP 项目。在这个过程中，我学习了如何使用预训练模型、中文分词、准备数据、文本编码与解码、设计问答机器的损失与优化目标、导出训练模型等技术，对问答领域的 NLP 有了更透彻的理解。
 
@@ -121,7 +121,7 @@ model = BertForQuestionAnswering.from_pretrained(
 
 在终端查看趋动云 GPU 使用状态：`orion-smi`
 
-![one-gpu](./README-iamge/one-gpu.png)
+![one-gpu](./README-image/one-gpu.png)
 
 为了使用多块 GPU，我们可以将 model 输入到 `nn.DataParallel` 中，使得加载训练数据时分别并行加载到各个 GPU 上进行计算。
 
@@ -137,7 +137,7 @@ model = nn.DataParallel(model)
 
 使用多块 GPU 训练时，两个 GPU 的使用情况如下：
 
-![two-gpu](./README-iamge/two-gpu.png)
+![two-gpu](./README-image/two-gpu.png)
 
 ## 准备训练数据
 
@@ -896,17 +896,17 @@ end_pred
 
 1. 付费使用的趋动云使用 2 个 GPU 并行训练，效率最高，单个 Epoch 共耗时 4 分 40 秒；
 
-![qudongyun](./README-iamge/qudongyun.png)
+![qudongyun](./README-image/qudongyun.png)
 
 2. 免费使用的 Kaggle 耗时 9 分钟，Google Colab 耗时 17 分钟；
 
-![kaggle](./README-iamge/kaggle.png)
+![kaggle](./README-image/kaggle.png)
 
-![google-colab](./README-iamge/google-colab.png)
+![google-colab](./README-image/google-colab.png)
 
 3. 在 Macbook Pro M1 Pro 上运行效率最低，即使使用了 GPU，单个 Epoch 仍预计耗时 3 小时。
 
-![macbook-pro](./README-iamge/macbook-pro.png)
+![macbook-pro](./README-image/macbook-pro.png)
 
 ```python
 # if fp16_training:
